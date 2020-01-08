@@ -1,9 +1,13 @@
-import 'dotenv';
+import 'dotenv/config';
 
 import express from 'express';
 import Youch from 'youch';
+import path from 'path';
+import swaggerUI  from 'swagger-ui-express';
 
 import sessionRouter from './routes/SessionRoutes';
+import swaggerRouter from './routes/SwaggerRoute';
+import swaggerConfig from './config/swaggerConfig';
 
 import 'express-async-errors';
 import './database/index';
@@ -16,13 +20,15 @@ class App {
         this.routes();
         this.exceptionHandler();
     }
-
+    
     middlewares() {
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: false }));
     }
 
     routes() {
+        this.server.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerConfig));
+        this.server.use(swaggerRouter);
         this.server.use(sessionRouter);
     }
 

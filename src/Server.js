@@ -1,5 +1,6 @@
+import 'dotenv/config';
 import app from './App';
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
     console.log('Sever is running!');
 });
