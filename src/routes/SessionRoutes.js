@@ -6,16 +6,15 @@ import SessionController from '../api/controllers/SessionController';
 const sessionRouter = new Router();
 
 /**
-/**
-* @swagger
-* /sessions:
-*   post:
-*     tags:
-*       - Users
-*     name: Session
-*     summary: Logs in a user
-*     consumes:
-*       - application/json
+ * @swagger
+ * /sessions:
+ *   post:
+ *    description:  generate user's serssions
+ *   consumes:
+ *    - "application/json"
+ *   responses:
+ *     200:
+ *       description: "token with created session"
  */
 sessionRouter.post('/sessions', validateSessionStoreFields, SessionController.store);
 
