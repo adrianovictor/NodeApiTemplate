@@ -3,10 +3,11 @@ import 'dotenv/config';
 import express from 'express';
 import Youch from 'youch';
 import swaggerUI  from 'swagger-ui-express';
+import swaggerConfig from './config/swaggerConfig';
 
 import sessionRouter from './routes/SessionRoutes';
 import swaggerRouter from './routes/SwaggerRoute';
-import swaggerConfig from './config/swaggerConfig';
+import userRouter from './routes/UserRoute';
 
 import 'express-async-errors';
 import './database/index';
@@ -29,6 +30,7 @@ class App {
         this.server.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerConfig));
         this.server.use(swaggerRouter);
         this.server.use(sessionRouter);
+        this.server.use(userRouter);
     }
 
     exceptionHandler() {
