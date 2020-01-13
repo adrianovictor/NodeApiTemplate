@@ -7,15 +7,26 @@ const sessionRouter = new Router();
 
 /**
  * @swagger
- * /sessions:
+ * /auth/sessions:
  *   post:
- *    description:  generate user's serssions
+ *     tags:
+ *       - Authentication
+ *     description:  generate user's serssions
  *   consumes:
- *    - "application/json"
+ *     - "application/json"
+ *   parameters:
+ *     - name: username
+ *       in: path
+ *       required: true
+ *       type: string
+ *     - name: password
+ *       in: path
+ *       required: true
+ *       type: string
  *   responses:
  *     200:
  *       description: "token with created session"
  */
-sessionRouter.post('/sessions', validateSessionStoreFields, SessionController.store);
+sessionRouter.post('/auth/sessions', validateSessionStoreFields, SessionController.store);
 
 export default sessionRouter;

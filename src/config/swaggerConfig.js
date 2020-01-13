@@ -14,7 +14,7 @@ const swaggerDefinition = {
             type: 'apikey',
             name: 'Authorization',
             scheme: 'bearer',
-            in: 'header'
+            in: 'header',
         },
     },
 };
